@@ -1,0 +1,148 @@
+<html>
+    <head>
+    <title>NEURO</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.modal.css" />
+    <link rel="stylesheet" type="text/css" href="css/sliding-panel.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/jqtree.css">
+    <link rel="stylesheet" type="text/css" href="css/jqtree.extend.css">
+    <link rel="stylesheet" type="text/css" href="css/viewer.css" />
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="js/jquery.modal.js"></script>
+    <script src="js/jquery.info.js"></script>
+    <script src="js/jquery.ui.slider.js"></script>
+    <script src="js/tree.jquery.js"></script>
+    <script src="js/jquery.sliding-panel.js"></script>
+    <script src="js/jquery.sliding-panel.volume.js"></script>
+    <script src="js/jquery.sliding-panel.label.js"></script>
+    <script src="js/jquery.sliding-panel.mesh.js"></script>
+    <script src='js/x.controller.js'></script>
+    <script src='js/x.viewer3d.js'></script>
+    <script src='js/x.viewer2d.js'></script>
+    <script src="js/xtk.js"></script>
+    <script src="js/xtk_scene.js"></script>
+    <script type="text/javascript">
+    </script>
+    </head>
+    <body>
+        <!--header bar-->
+        <div id="banner">
+            <h1>DEMO
+                <button class="camera_reset_btn" onclick="resetCameraPos('axial')">
+                    <img src='gfx/view_axial.png'/>
+                </button>
+                <button  class="camera_reset_btn" onclick="resetCameraPos('coronal')">
+                    <img src='gfx/view_coronal.png'/>
+                </button>
+                <button  class="camera_reset_btn" onclick="resetCameraPos('sagittal')">
+                    <img src='gfx/view_sagittal.png'/>
+                </button>
+            </h1>
+        </div>
+        <!--2D slice viewers-->
+        <div id='twoD_viewer_header'>
+            <!-- <button  id="info_button">
+                <img src='gfx/info_icon.png'/>
+            </button> -->
+            <h1 id='anatomy_caption'>No Label Selected</h1>
+        </div>
+        <div id="twoD_viewers">
+            <div id='sliceX' class='twoDRenderer'>
+                <div id='yellow_slider'></div>
+            </div>
+            <div id='sliceY' class='twoDRenderer'>
+                <div id='red_slider'></div>
+            </div>
+            <div id='sliceZ' class='twoDRenderer'>
+                <div id='green_slider'></div>
+            </div>
+        </div>
+        <!--/2D slice viewers-->
+        <!--3D slice rendering-->
+        <div id='3d' class='threeDRenderer'>
+        </div>
+        <!--sliding panels-->
+            <!--MRI volume panel-->
+            <div class="panel_volume">
+                <!--orthogonal slice toggles-->
+                <h1>Slice Planes</h1>
+                <input type="checkbox" id="axial_slice_toggle" checked="checked" />
+                <label for="axial_slice_toggle">
+                    <img src='gfx/axial_slice.jpg' width="50px" />
+                    <br />
+                    <span>axial</span>
+                </label>
+                <br/>
+                <br/>
+                <input type="checkbox" id="coronal_slice_toggle" checked="checked" />
+                <label for="coronal_slice_toggle">
+                    <img src='gfx/coronal_slice.jpg' width="50px" />
+                    <br />
+                    <span>coronal</span>
+                </label>
+                <br/>
+                <br/>
+                <input type="checkbox" id="sagittal_slice_toggle" checked="checked" />
+                <label for="sagittal_slice_toggle">
+                    <img src='gfx/sagittal_slice.jpg' width="50px" />
+                    <br/>
+                    <span>sagittal</span>
+                </label>
+                <br/>
+                <br/>
+                <!--orthogonal slice toggles-->
+                <h1>3D Volume</h1>
+                <input type="checkbox" id="3d_render_toggle" />
+                <label for="3d_render_toggle">
+                    <img src='gfx/3d.png' width="50px" />
+                    <br/>
+                    <span>render</span>
+                </label>
+                <br/>
+                <br/>
+                <!--image controls-->
+                <h1>Image Levels</h1>
+                <label for="image_control_threshold">Threshold:</label>
+                <div id="image_control_threshold"></div>
+                <br/>
+                <label for="image_control_brightness">Window/Level:</label>
+                <div id="image_control_brightness"></div>
+                <br/>
+                <label for="image_control_opacity">Opacity:</label>
+                <div id="image_control_opacity"></div>
+                <br/>
+                <div style="clear: both;"></div>
+            </div>
+            <!--/MRI volume panel-->
+            <!--3D mesh panel-->
+            <div class="panel_mesh">
+                <h1>Surfaces</h1>
+                <div id="mesh_tree"></div>
+                <h1>Controls</h1>
+                <label for="mesh_control_opacity">Opacity:</label>
+                <div id="mesh_control_opacity"></div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        <!--/sliding panels-->
+        <!--sliding panel triggers-->
+        <!-- <a class="panel_trigger" id="trigger_quiz" target="panel_quiz" href="#"><div class="panel_trigger_text">Quiz</div></a> -->
+        <a class="panel_trigger" id="trigger_volume" target="panel_volume" href="#"><div class="panel_trigger_text">Slices</div></a>
+        <!-- <a class="panel_trigger" id="trigger_labels" target="panel_labels" href="#"><div class="panel_trigger_text">Labels</div></a> -->
+        <a class="panel_trigger" id="trigger_mesh" target="panel_mesh" href="#"><div class="panel_trigger_text">Surfs</div></a>
+        <!--/sliding panel triggers-->
+
+        <!--/atlas selector-->
+        <!--modal info window-->
+        <div class="jqmWindow" id="dialog">
+            <a href="#" class="jqmClose"><em>Close</em></a>
+            <iframe id="info_frame"></iframe>
+        </div>
+        <!--/modal info window-->
+
+    </body>
+    </html>
