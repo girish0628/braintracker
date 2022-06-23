@@ -23,7 +23,7 @@ $(function () {
     if ($("#3d_render_toggle").is(":checked")) {
       $("#axial_slice_toggle").button("disable");
       $("#coronal_slice_toggle").button("disable");
-      $("#sagittal_slice_toggle").button("disable");
+      $("#sagittal_slice_toggle").button("disable");debugger;
       $("#image_control_threshold").dragslider("values", 0, 40);
       $("#image_control_opacity").slider("value", 10);
       thresholdVolume(null, [40, null]);
@@ -45,7 +45,7 @@ $(function () {
     rangeDrag: true,
     min: 0,
     max: 255,
-    values: [0, 255],
+    values: [0, 100],
     slide: thresholdVolume, // connect to x.controller.js
   });
   $("#image_control_brightness").dragslider({
@@ -53,7 +53,7 @@ $(function () {
     rangeDrag: true,
     min: 0,
     max: 255,
-    values: [40, 140],
+    values: [0, 100],
     slide: windowLevelVolume, // connect to x.controller.js
   });
   $("#image_control_opacity").slider({

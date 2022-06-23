@@ -42,6 +42,10 @@ function thresholdVolume(event, ui) {
   if (!volume) {
     return;
   }
+  min_val = volume.min;
+  max_val = volume.max;
+  //  0 --- 100 
+  //  min_val + (max_val - min_val) * (slides_value/100)
   if (event == null) {
     if (ui[0] != null) {
       volume.lowerThreshold = ui[0];
@@ -52,8 +56,8 @@ function thresholdVolume(event, ui) {
       volume.upperThreshold = ui[1];
     }
   } else {
-    volume.lowerThreshold = ui.values[0];
-    volume.upperThreshold = ui.values[1];
+    volume.lowerThreshold = min_val + (max_val - min_val) * (ui.values[0]/100); //ui.values[0];
+    volume.upperThreshold = min_val + (max_val - min_val) * (ui.values[1]/100); //ui.values[1];
   }
 }
 
@@ -62,9 +66,10 @@ function windowLevelVolume(event, ui) {
   if (!volume) {
     return;
   }
-
-  volume.windowLow = ui.values[0];
-  volume.windowHigh = ui.values[1];
+  min_val = volume.min;
+  max_val = volume.max;
+  volume.windowLow = min_val + (max_val - min_val) * (ui.values[0]/100); //ui.values[0];
+  volume.windowHigh = min_val + (max_val - min_val) * (ui.values[1]/100); //ui.values[1];
 }
 
 function opacity3dVolume(event, ui) {

@@ -34,17 +34,17 @@
 
 #yellow_slider {
   margin-top: auto;
-  background: yellow;
+  background: red;
 }
 
 #red_slider {
   margin-top: auto;
-  background: red;
+  background: green;
 }
 
 #green_slider {
   margin-top: 2px;
-  background: green;
+  background: blue;
 }
 
 .xtk-progress-bar {
