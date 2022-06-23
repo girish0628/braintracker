@@ -162,7 +162,7 @@ sliceZ = null;
 $(function () {
   // initialize with the MRI volume with the youngest dataset
   var volume = new X.volume();
-  volume.file = "data/0.14/volume.nii.gz";
+  volume.file = "data/0.14/fa.nii.gz";
   _ATLAS_.volumes[_ATLAS_.currentVolume] = volume;
 
   // 3D rendering
