@@ -17,14 +17,11 @@ function resetCameraPos(axis) {
 // initialize the 3D viewer
 function init_viewer3d() {
   // adjust window/level
-  // _ATLAS_.volumes[_ATLAS_.currentVolume].windowLow = 40;
-  // _ATLAS_.volumes[_ATLAS_.currentVolume].windowHigh = 140;
-
-  _ATLAS_.volumes[_ATLAS_.currentVolume].windowLow = _ATLAS_.volumes[_ATLAS_.currentVolume].min;
-  _ATLAS_.volumes[_ATLAS_.currentVolume].windowHigh = _ATLAS_.volumes[_ATLAS_.currentVolume].max;
+  _ATLAS_.volumes.windowLow = _ATLAS_.volumes.min;
+  _ATLAS_.volumes.windowHigh = _ATLAS_.volumes.max;
 }
 
-// Select mesh from the 3D scene
+// Select fiber from the 3D scene
 function scene_picking() {
   r0.interactor.onMouseMove = function () {
     if (typeof hoverTimer != "undefined") {
@@ -40,21 +37,8 @@ function scene_picking() {
 
       if (_id != 0) {
         var _object = r0.get(_id);
-        if (_object.classname == "mesh") {
-          // grab the object's caption
-          var _caption = _object.caption;
-
-          // ... and its color
-          var _color = _object.color.slice();
-          _color[0] = parseInt(_color[0] * 255, 10);
-          _color[1] = parseInt(_color[1] * 255, 10);
-          _color[2] = parseInt(_color[2] * 255, 10);
-
-          // ... and its associated label value
-          // var labelvalue = _object.file.split("_")[1];
-          // if (!labelvalue || labelvalue == 0) {
-          //   return;
-          // }
+        if (_object.classname == "fiber") {
+          // grab the object's ca
         }
       }
     }, 100);

@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/jqtree.css">
     <link rel="stylesheet" type="text/css" href="css/jqtree.extend.css">
     <link rel="stylesheet" type="text/css" href="css/viewer.css" />
+    <script src="js/config.js"></script>
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
     <script src="js/jquery.modal.js"></script>
@@ -18,8 +19,7 @@
     <script src="js/tree.jquery.js"></script>
     <script src="js/jquery.sliding-panel.js"></script>
     <script src="js/jquery.sliding-panel.volume.js"></script>
-    <script src="js/jquery.sliding-panel.label.js"></script>
-    <script src="js/jquery.sliding-panel.mesh.js"></script>
+    <script src="js/jquery.sliding-panel.fiber.js"></script>
     <script src='js/x.controller.js'></script>
     <script src='js/x.viewer3d.js'></script>
     <script src='js/x.viewer2d.js'></script>
@@ -71,7 +71,7 @@
                 <!--orthogonal slice toggles-->
                 <h1>Slice Planes</h1>
                 <input type="checkbox" id="axial_slice_toggle" checked="checked" />
-                <label for="axial_slice_toggle">
+                <label for="axial_slice_toggle" class="lft-label">
                     <img src='gfx/axial_slice.jpg' width="50px" />
                     <br />
                     <span>axial</span>
@@ -79,7 +79,7 @@
                 <br/>
                 <br/>
                 <input type="checkbox" id="coronal_slice_toggle" checked="checked" />
-                <label for="coronal_slice_toggle">
+                <label for="coronal_slice_toggle" class="lft-label">
                     <img src='gfx/coronal_slice.jpg' width="50px" />
                     <br />
                     <span>coronal</span>
@@ -87,7 +87,7 @@
                 <br/>
                 <br/>
                 <input type="checkbox" id="sagittal_slice_toggle" checked="checked" />
-                <label for="sagittal_slice_toggle">
+                <label for="sagittal_slice_toggle" class="lft-label">
                     <img src='gfx/sagittal_slice.jpg' width="50px" />
                     <br/>
                     <span>sagittal</span>
@@ -97,7 +97,7 @@
                 <!--orthogonal slice toggles-->
                 <h1>3D Volume</h1>
                 <input type="checkbox" id="3d_render_toggle" />
-                <label for="3d_render_toggle">
+                <label for="3d_render_toggle" class="lft-label">
                     <img src='gfx/3d.png' width="50px" />
                     <br/>
                     <span>render</span>
@@ -118,22 +118,20 @@
                 <div style="clear: both;"></div>
             </div>
             <!--/MRI volume panel-->
-            <!--3D mesh panel-->
-            <div class="panel_mesh">
+            <!--3D fiber panel-->
+            <div class="panel_fiber">
                 <h1>Surfaces</h1>
-                <div id="mesh_tree"></div>
+                <div id="fiber_tree"></div>
                 <h1>Controls</h1>
-                <label for="mesh_control_opacity">Opacity:</label>
-                <div id="mesh_control_opacity"></div>
+                <label for="fiber_control_opacity">Opacity:</label>
+                <div id="fiber_control_opacity"></div>
                 <div style="clear: both;"></div>
             </div>
         </div>
         <!--/sliding panels-->
         <!--sliding panel triggers-->
-        <!-- <a class="panel_trigger" id="trigger_quiz" target="panel_quiz" href="#"><div class="panel_trigger_text">Quiz</div></a> -->
         <a class="panel_trigger" id="trigger_volume" target="panel_volume" href="#"><div class="panel_trigger_text">Slices</div></a>
-        <!-- <a class="panel_trigger" id="trigger_labels" target="panel_labels" href="#"><div class="panel_trigger_text">Labels</div></a> -->
-        <a class="panel_trigger" id="trigger_mesh" target="panel_mesh" href="#"><div class="panel_trigger_text">Tracts</div></a>
+        <a class="panel_trigger" id="trigger_fiber" target="panel_fiber" href="#"><div class="panel_trigger_text">Tracts</div></a>
         <!--/sliding panel triggers-->
 
         <!--/atlas selector-->

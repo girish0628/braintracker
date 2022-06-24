@@ -1,6 +1,6 @@
 #tree {
 	position: absolute;
-/* 	left: 20px; */
+	/* 	left: 20px; */
 	top: 2px;
 }
 
@@ -8,7 +8,8 @@ ul.jqtree-tree {
 	margin-left: 12px;
 }
 
-ul.jqtree-tree,ul.jqtree-tree ul.jqtree_common {
+ul.jqtree-tree,
+ul.jqtree-tree ul.jqtree_common {
 	list-style: none outside;
 	margin-bottom: 0;
 	padding: 0;
@@ -33,10 +34,12 @@ ul.jqtree-tree .jqtree-toggler {
 	position: absolute;
 	left: -1.0em;
 	top: 30%;
-	*top: 0; /* fix for ie7 */
+	*top: 0;
+	/* fix for ie7 */
 	font-size: 12px;
 	line-height: 12px;
-	font-family: arial; /* fix for ie9 */
+	font-family: arial;
+	/* fix for ie9 */
 	border-bottom: none;
 	color: #fff;
 }
@@ -125,19 +128,11 @@ ul.jqtree-tree span.jqtree-border {
 }
 
 ul.jqtree-tree div {
-	width: 100%; /* todo: why is this in here? */
-	*width: auto; /* ie7 fix; issue 41 */
+	width: 100%;
+	/* todo: why is this in here? */
+	*width: auto;
+	/* ie7 fix; issue 41 */
 	position: relative;
-}
-
-ul.jqtree-tree li.jqtree-selected>div,ul.jqtree-tree li.jqtree-selected>div:hover
-	{ /*     background-color: #97BDD6; */
-	/*     background: -webkit-gradient(linear, left top, left bottom, from(#BEE0F5), to(#89AFCA)); */
-	/*     background: -moz-linear-gradient(top, #BEE0F5, #89AFCA); */
-	/*     background: -ms-linear-gradient(top, #BEE0F5, #89AFCA); */
-	/*     background: -o-linear-gradient(top, #BEE0F5, #89AFCA); */
-	/*     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7); */
-/* 	font-weight: bold; */
 }
 
 ul.jqtree-tree .jqtree-moving>div .jqtree-title {

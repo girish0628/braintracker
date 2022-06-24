@@ -63,3 +63,12 @@
   opacity: 0.5;
 }
 
+#lst {
+  overflow: auto;
+  height: 450px;
+  margin-top: 12px;
+}
+
+.lft-label {
+  margin-left: 60px;
+}

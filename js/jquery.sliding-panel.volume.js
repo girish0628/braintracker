@@ -23,7 +23,7 @@ $(function () {
     if ($("#3d_render_toggle").is(":checked")) {
       $("#axial_slice_toggle").button("disable");
       $("#coronal_slice_toggle").button("disable");
-      $("#sagittal_slice_toggle").button("disable");debugger;
+      $("#sagittal_slice_toggle").button("disable");
       $("#image_control_threshold").dragslider("values", 0, 40);
       $("#image_control_opacity").slider("value", 10);
       thresholdVolume(null, [40, null]);

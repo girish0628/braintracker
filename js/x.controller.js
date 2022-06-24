@@ -44,7 +44,7 @@ function thresholdVolume(event, ui) {
   }
   min_val = volume.min;
   max_val = volume.max;
-  //  0 --- 100 
+  //  0 --- 100
   //  min_val + (max_val - min_val) * (slides_value/100)
   if (event == null) {
     if (ui[0] != null) {
@@ -56,8 +56,10 @@ function thresholdVolume(event, ui) {
       volume.upperThreshold = ui[1];
     }
   } else {
-    volume.lowerThreshold = min_val + (max_val - min_val) * (ui.values[0]/100); //ui.values[0];
-    volume.upperThreshold = min_val + (max_val - min_val) * (ui.values[1]/100); //ui.values[1];
+    volume.lowerThreshold =
+      min_val + (max_val - min_val) * (ui.values[0] / 100); //ui.values[0];
+    volume.upperThreshold =
+      min_val + (max_val - min_val) * (ui.values[1] / 100); //ui.values[1];
   }
 }
 
@@ -68,8 +70,8 @@ function windowLevelVolume(event, ui) {
   }
   min_val = volume.min;
   max_val = volume.max;
-  volume.windowLow = min_val + (max_val - min_val) * (ui.values[0]/100); //ui.values[0];
-  volume.windowHigh = min_val + (max_val - min_val) * (ui.values[1]/100); //ui.values[1];
+  volume.windowLow = min_val + (max_val - min_val) * (ui.values[0] / 100); //ui.values[0];
+  volume.windowHigh = min_val + (max_val - min_val) * (ui.values[1] / 100); //ui.values[1];
 }
 
 function opacity3dVolume(event, ui) {
@@ -173,108 +175,95 @@ function loadJSON(callback) {
   xobj.send(null);
 }
 //
-// MESH
+// FIBERS
 //
-function toggleMeshVisibility(label) {
-  loadJSON(function (response) {
-    // Parse JSON string into object
-    var actual_JSON = JSON.parse(response);
-    console.log(actual_JSON);
-    if (!_ATLAS_.meshes[_ATLAS_.currentVolume][label]) {
-      // load mesh
-      var m = new X.fibers();
-      // var m = new X.mesh();
-      m.file = "https://neuronorm0.s3.us-east-2.amazonaws.com/demo/" + label;
-      // m.file = "data/" + _ATLAS_.steps[_ATLAS_.currentVolume] + "/" + label;
-      // m.file = "https://neuronorm0.s3.us-east-2.amazonaws.com/demo/AF_left.trk";
-      // m.caption = label.replace(".trk", "");
-      // .split("_")[2].split(); //.replace("Model_","")
-      m.caption =
-        actual_JSON[label.replace("_left.trk", "").replace("_right.trk", "")];
-      console.log(label);
-      r0.add(m);
-      _ATLAS_.meshes[_ATLAS_.currentVolume][label] = m;
-      _ATLAS_.meshes[_ATLAS_.currentVolume][label].visible = false;
-      _ATLAS_.meshes[_ATLAS_.currentVolume][label].opacity =
-        _ATLAS_.meshOpacity;
-    }
-    // show the mesh
-    _ATLAS_.meshes[_ATLAS_.currentVolume][label].visible =
-      !_ATLAS_.meshes[_ATLAS_.currentVolume][label].visible;
-  });
+function toggleFiberVisibility(label) {
+  if (!_ATLAS_.fibers[label]) {
+    // load fiber
+    var m = new X.fibers();
+    m.file = "https://neuronorm0.s3.us-east-2.amazonaws.com/demo/" + label;
+    m.caption =
+      TRK_NAME[label.replace("_left.trk", "").replace("_right.trk", "")];
+    r0.add(m);
+    _ATLAS_.fibers[label] = m;
+    _ATLAS_.fibers[label].visible = false;
+    _ATLAS_.fibers[label].opacity = _ATLAS_.fiberOpacity;
+  }
+  // show the fiber
+  _ATLAS_.fibers[label].visible = !_ATLAS_.fibers[label].visible;
 }
 
-function meshColor(hex, rgb) {
-  if (!mesh) {
+function fiberColor(hex, rgb) {
+  if (!fiber) {
     return;
   }
 
-  mesh.color = [rgb.r / 255, rgb.g / 255, rgb.b / 255];
+  fiber.color = [rgb.r / 255, rgb.g / 255, rgb.b / 255];
 
   if (RT.linked) {
     clearTimeout(RT._updater);
-    RT._updater = setTimeout(RT.pushMesh.bind(RT, "color", mesh.color), 150);
+    RT._updater = setTimeout(RT.pushFibers.bind(RT, "color", fiber.color), 150);
   }
 }
 
-function opacityMesh(event, ui) {
-  for (var m in _ATLAS_.meshes[_ATLAS_.currentVolume]) {
-    if (_ATLAS_.meshes[_ATLAS_.currentVolume][m] != null) {
-      _ATLAS_.meshes[_ATLAS_.currentVolume][m].opacity = ui.value / 100;
+function opacityFiber(event, ui) {
+  for (var m in _ATLAS_.fibers[_ATLAS_.currentVolume]) {
+    if (_ATLAS_.fibers[_ATLAS_.currentVolume][m] != null) {
+      _ATLAS_.fibers[_ATLAS_.currentVolume][m].opacity = ui.value / 100;
     }
   }
-  _ATLAS_.meshOpacity = ui.value / 100;
+  _ATLAS_.fiberOpacity = ui.value / 100;
 }
 
 function thresholdScalars(event, ui) {
-  if (!mesh) {
+  if (!fiber) {
     return;
   }
 
-  mesh.scalars.lowerThreshold = ui.values[0] / 100;
-  mesh.scalars.upperThreshold = ui.values[1] / 100;
+  fiber.scalars.lowerThreshold = ui.values[0] / 100;
+  fiber.scalars.upperThreshold = ui.values[1] / 100;
 
   if (RT.linked) {
     clearTimeout(RT._updater);
     RT._updater = setTimeout(
-      RT.pushScalars.bind(RT, "lowerThreshold", mesh.scalars.lowerThreshold),
+      RT.pushScalars.bind(RT, "lowerThreshold", fiber.scalars.lowerThreshold),
       150
     );
     clearTimeout(RT._updater2);
     RT._updater2 = setTimeout(
-      RT.pushScalars.bind(RT, "upperThreshold", mesh.scalars.upperThreshold),
+      RT.pushScalars.bind(RT, "upperThreshold", fiber.scalars.upperThreshold),
       150
     );
   }
 }
 
 function scalarsMinColor(hex, rgb) {
-  if (!mesh) {
+  if (!fiber) {
     return;
   }
 
-  mesh.scalars.minColor = [rgb.r / 255, rgb.g / 255, rgb.b / 255];
+  fiber.scalars.minColor = [rgb.r / 255, rgb.g / 255, rgb.b / 255];
 
   if (RT.linked) {
     clearTimeout(RT._updater);
     RT._updater = setTimeout(
-      RT.pushScalars.bind(RT, "minColor", mesh.scalars.minColor),
+      RT.pushScalars.bind(RT, "minColor", fiber.scalars.minColor),
       150
     );
   }
 }
 
 function scalarsMaxColor(hex, rgb) {
-  if (!mesh) {
+  if (!fiber) {
     return;
   }
 
-  mesh.scalars.maxColor = [rgb.r / 255, rgb.g / 255, rgb.b / 255];
+  fiber.scalars.maxColor = [rgb.r / 255, rgb.g / 255, rgb.b / 255];
 
   if (RT.linked) {
     clearTimeout(RT._updater);
     RT._updater = setTimeout(
-      RT.pushScalars.bind(RT, "maxColor", mesh.scalars.maxColor),
+      RT.pushScalars.bind(RT, "maxColor", fiber.scalars.maxColor),
       150
     );
   }

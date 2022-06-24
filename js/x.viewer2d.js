@@ -17,7 +17,7 @@ $(function () {
 
 // initialize the 2D viewers
 function init_viewer2d() {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
 
   // X Slice
   if (sliceX) {

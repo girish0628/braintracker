@@ -2,12 +2,10 @@ a:focus {
     outline: none;
 }
 
-.panel_quiz,
 .panel_volume,
-.panel_labels,
-.panel_mesh {
+.panel_fiber {
     position: absolute;
-    top: 50px;
+    top: 130px;
     left: 0;
     display: none;
     background: #1a1a1a;
@@ -16,19 +14,24 @@ a:focus {
     -webkit-border-top-right-radius: 20px;
     -moz-border-radius-bottomright: 20px;
     -webkit-border-bottom-right-radius: 20px;
-    width: 150px;
+    width: 250px;
     height: auto;
-    padding: 30px 30px 30px 80px;
+    padding: 30px 30px 30px 20px;
     filter: alpha(opacity=85);
     opacity: .85;
 }
 
-.panel_quiz {
-    width: 300px;
+.panel_volume {
+    top: 50px;
+    width: 220px;
 }
 
-.panel_mesh {
-    width: 200px;
+.panel_volume h1 {
+    padding: 10px 0px 15px 60px;
+}
+
+.panel_fiber h1 {
+    padding: 6px 0px 5px 64px;
 }
 
 .panel p {
@@ -112,33 +115,30 @@ a.active.panel_trigger {
     /* Internet Explorer */
 }
 
-#trigger_quiz {
-    top: 100px;
-}
-
 #trigger_volume {
-    top: 200px;
+    top: 50px;
 }
 
-#trigger_labels {
-    top: 300px;
+#trigger_fiber {
+    top: 130px;
 }
 
-#trigger_mesh {
-    top: 300px;
-}
-
-
-.label,
-.mesh {
+.fiber {
     margin-bottom: 5px;
     font-size: 15px;
-    cursor: hand;
     cursor: pointer;
     list-style: none;
+    font-family: verdana, helvetica, arial, sans-serif;
 }
 
+li.fiber {
+    border-bottom: 0.002rem solid #009688;
+    padding: 4px 0;
+}
 
+#fiber_tree {
+    width: 280px;
+}
 
 .columns {
     clear: both;
