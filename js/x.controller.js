@@ -33,12 +33,12 @@
 function setupUi() {}
 
 function toggleVolumeRendering() {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   volume.volumeRendering = !volume.volumeRendering;
 }
 
 function thresholdVolume(event, ui) {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   if (!volume) {
     return;
   }
@@ -64,7 +64,7 @@ function thresholdVolume(event, ui) {
 }
 
 function windowLevelVolume(event, ui) {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   if (!volume) {
     return;
   }
@@ -75,7 +75,7 @@ function windowLevelVolume(event, ui) {
 }
 
 function opacity3dVolume(event, ui) {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   if (!volume) {
     return;
   }
@@ -87,25 +87,25 @@ function opacity3dVolume(event, ui) {
 }
 
 function toggleAxialSliceVisibility() {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   volume.children[2].children[Math.floor(volume.indexZ)].visible =
     !volume.children[2].children[Math.floor(volume.indexZ)].visible;
 }
 
 function toggleCoronalSliceVisibility() {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   volume.children[1].children[Math.floor(volume.indexY)].visible =
     !volume.children[1].children[Math.floor(volume.indexY)].visible;
 }
 
 function toggleSagittalSliceVisibility() {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   volume.children[0].children[Math.floor(volume.indexX)].visible =
     !volume.children[0].children[Math.floor(volume.indexX)].visible;
 }
 
 function volumeslicingX(event, ui) {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   if (!volume) {
     return;
   }
@@ -113,7 +113,7 @@ function volumeslicingX(event, ui) {
 }
 
 function volumeslicingY(event, ui) {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   if (!volume) {
     return;
   }
@@ -121,7 +121,7 @@ function volumeslicingY(event, ui) {
 }
 
 function volumeslicingZ(event, ui) {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   if (!volume) {
     return;
   }
@@ -129,7 +129,7 @@ function volumeslicingZ(event, ui) {
 }
 
 function fgColorVolume(hex, rgb) {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   if (!volume) {
     return;
   }
@@ -146,7 +146,7 @@ function fgColorVolume(hex, rgb) {
 }
 
 function bgColorVolume(hex, rgb) {
-  var volume = _ATLAS_.volumes[_ATLAS_.currentVolume];
+  var volume = _ATLAS_.volumes;
   if (!volume) {
     return;
   }
@@ -207,9 +207,9 @@ function fiberColor(hex, rgb) {
 }
 
 function opacityFiber(event, ui) {
-  for (var m in _ATLAS_.fibers[_ATLAS_.currentVolume]) {
-    if (_ATLAS_.fibers[_ATLAS_.currentVolume][m] != null) {
-      _ATLAS_.fibers[_ATLAS_.currentVolume][m].opacity = ui.value / 100;
+  for (var m in _ATLAS_.fibers) {
+    if (_ATLAS_.fibers[m] != null) {
+      _ATLAS_.fibers[m].opacity = ui.value / 100;
     }
   }
   _ATLAS_.fiberOpacity = ui.value / 100;
